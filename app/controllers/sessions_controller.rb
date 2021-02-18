@@ -6,18 +6,33 @@ class SessionsController < ApplicationController
   end
 
   def new
+    @user = User.new
+    @images = Image.all.shuffle.take(1)
   end
 
   def create
-    @image = Image.new(image_params)
-    if @image.save
-      redirect_to images_path, notice: 'imagen guardada con exito'
-    else
-      redirect_to images_path, notice: "error al intentar guardar"
+    if params[:image].present?
+      @image = Image.new(image_params)
+
+      if @image.save
+        redirect_to images_path, notice: 'imagen guardada con exito'
+      else
+        redirect_to images_path, notice: "error al intentar guardar"
+      end
+    elsif params[:user].present?
+      @user = User.find_by_email(params[:user][:email])
+      if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect_to i_user_path
+      else
+        redirect_to s_new_path
+      end
     end
   end
 
   def destroy
+    reset_session
+    redirect_to root_path
   end
 
   def images

@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
     <%# ////////////////////////////////google fonts////////////////////////////////////// %>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
+
 
 <%# ///////////////////////////////CSS Y JS PROPIO/////////////////////////////////////////////////// %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -25,6 +26,9 @@
   </head>
 
   <body>
+    <% if session[:user_id].present? %>
+      <%= link_to 'cerrar sesion', c_session_path, method: :delete %>
+    <% end %>
     <%= notice %>
 
     <nav class="navbar">

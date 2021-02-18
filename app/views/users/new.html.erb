@@ -1,2 +1,34 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div style="width:50vw; height: 75vh; margin: 2rem 0 0 2rem">
+    <% @images.each do |i| %>
+        <div style="background-image: url(<%= i.url %>); width: 100%; height: 100%; background-size: cover; background-position: center">
+        </div>
+    <% end %>
+</div>
+<div class="contenedor">
+    <div>
+        <h3>Nuevo usuario</h3>
+    </div>
+    <hr>
+    
+    <%= form_with(url: cu_path, model: @user, local: true) do |j| %>
+        <div class="mb-3">
+            <%= j.label :nombre %>
+            <%= j.text_field :name, class: 'form-control' %> 
+        </div>
+        <div class="mb-3">
+            <%= j.label :email %>
+            <%= j.text_field :email, class: 'form-control' %> 
+        </div>
+        <div class="mb-3">
+            <%= j.label :contraseña %>
+            <%= j.text_field :password, type: "password", class: 'form-control' %>
+            <%= j.label "confirmar contraseña" %>
+            <%= j.text_field :password_confirmation, type: "password", class: 'form-control' %> 
+        </div>
+        <div class="mb-3">
+            <%= j.label :foto %>
+            <%= j.text_field :photo, class: 'form-control' %> 
+        </div>
+        <div><%= j.submit "entrar"%> </div>
+    <% end %>
+</div>

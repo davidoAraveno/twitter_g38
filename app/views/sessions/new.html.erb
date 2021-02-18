@@ -1,2 +1,23 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<div style="width:50vw; height: 75vh; margin: 2rem 0 0 2rem">
+    <% @images.each do |i| %>
+        <div style="background-image: url(<%= i.url %>); width: 100%; height: 100%; background-size: cover; background-position: center">
+        </div>
+    <% end %>
+</div>
+<div class="contenedor">
+    <div>
+        <h3>Iniciar Sesion</h3>
+        <hr>
+    </div>
+    <%= form_with(url: sc_path, model: @user, local: true) do |j| %>
+        <div class="mb-3">
+            <%= j.label :email, class:"texto-input" %>
+            <%= j.text_field :email, class: 'form-control' %> 
+        </div>
+        <div class="mb-3">
+            <%= j.label :password, class:"texto-input" %>
+            <%= j.text_field :password, type: "password", class: 'form-control' %> 
+        </div>
+        <div><%= j.submit "Entrar", class: "btn btn-info"%> </div>
+    <% end %>
+</div>

@@ -8,3 +8,20 @@
 .link-nav{
     color: white;
 }
+
+
+/* //////////////////sessions new ///////////////////////////////////////// */
+
+.contenedor{
+    display: inline-block;
+    position: absolute;
+    right: 10%;
+    top: 15%;
+    background-color: #E5E5E5;
+    padding: 1rem 4rem;
+    border-radius: 20px;
+}
+
+.texto-input{
+    font-weight: 1;
+}
