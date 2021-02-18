@@ -1,0 +1,10 @@
+/* //////////////////root de la pagina//////////////////////////////// */
+
+.navbar {
+    height: 10vh;
+    background-color: dodgerblue;
+}
+
+.link-nav{
+    color: white;
+}
