@@ -1,8 +1,8 @@
-<header class="container" style="height:90vh">
+<header class="container-fluid" style="height:90vh">
     <h1 style="color: dodgerblue; font-size: 2rem"> Se Tú, se Túiter </h1>
     <div class="row d-flex justify-content-center align-items-center">
         <% @images.each do |i| %>
-            <div class="col-md-2 mx-1 mb-2 border" style="background-image: url(<%= i.url %>); width: 200px; height: 200px; background-size: cover; background-position: center">
+            <div class="col-md-3 mx-1 mb-2 border" style="background-image: url(<%= i.url %>); width: 200px; height: 200px; background-size: cover; background-position: center">
             </div>
         <% end %>
     </div>

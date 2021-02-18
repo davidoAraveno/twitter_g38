@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   http_basic_authenticate_with name:'david', password:'123', only: :images
 
   def index
-    @images = Image.all.shuffle.take(10)
+    @images = Image.all.shuffle.take(9)
   end
 
   def new

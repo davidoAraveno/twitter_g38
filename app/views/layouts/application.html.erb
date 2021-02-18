@@ -26,9 +26,6 @@
   </head>
 
   <body>
-    <% if session[:user_id].present? %>
-      <%= link_to 'cerrar sesion', c_session_path, method: :delete %>
-    <% end %>
     <%= notice %>
 
     <nav class="navbar">
@@ -36,8 +33,12 @@
         <i class="fab fa-twitter fa-3x text-white"></i>
       </div>
       <div>
-        <a href="<%= s_new_path %>" class="px-5 link-nav"> iniciar sesion </a>
-        <a href="<%= n_user_path %>" class="link-nav"> registrarse </a>
+        <% if session[:user_id].present? %>
+          <%= link_to 'cerrar sesion', c_session_path, method: :delete, class:"link-nav" %>
+        <% else %>
+          <a href="<%= s_new_path %>" class="px-5 link-nav"> iniciar sesion </a>
+          <a href="<%= n_user_path %>" class="link-nav"> registrarse </a>
+        <% end %>
       </div>
     </nav>
 
