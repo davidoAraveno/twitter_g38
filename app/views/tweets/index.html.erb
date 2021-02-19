@@ -1,0 +1,88 @@
+<%# ////////////////////////////FORMULARIO PARA PUBLICAR TWEET//////////////////////////// %>
+
+<% if session[:user_id] %>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+                <div class="col-md-7 mb-3 py-2" style="background: #D5D5D5; border-radius: 15px">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            <div style="background-image:url(<%= current_user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+
+                            </div>
+                            <div style="margin-left: 2rem">
+                                Crear Tweet!
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 5px">
+                    <div>
+                        <%= form_with(url: ct_path, model: @tweet, local:true) do |f| %>
+                            <div class="text-center">
+                                <%= f.text_area :content, :size => "68x4", placeholder:"¿Que estas pensando #{current_user.name}?", style: "border: none;" %>
+                                <% f.number_field :retweets, value: 0 %>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <%= f.submit 'twittear', style: 'border-radius: 50px;', class:"btn btn-info" %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div> 
+        </div>
+    </div>
+<% end %>
+
+<%# /////////////////////// TWEET PUBLICADOS /////////////////////////////////////// %>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <% @tweets.each do |i| %>
+            <% @count += 1 %>
+            <% if @count >= @inicio && @count <= @fin%>
+                <div class="col-md-7 mb-3 pt-2" style="background: #D5D5D5; border-radius: 15px">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            <div style="background-image:url(<%= i.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+
+                            </div>
+                            <div style="margin-left: 2rem">
+                                <h4><%= i.user.name.capitalize %> </h4>
+                            </div>
+                        </div>
+                        <div>
+                            <%= time_ago_in_words(i.created_at) %>
+                        </div>
+                    </div>
+                    <hr style="margin: 10px">
+                    <div class="text-center">
+                        <p> <%= i.content.capitalize %> </p>
+                    </div>
+                    <% if session[:user_id] %>
+                        <div class="d-flex">
+                            <div style="border-radius: 15px; padding: 0;">
+                                <a href="#">
+                                    <p style="font-size: 1.6rem: color: #3FA95F"><i class="fas fa-retweet"></i></p>
+                                </a>
+                            </div>
+                            <div style="margin-left: 1rem;">
+                                <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
+                                    <p style="font-size: 1.3rem"><i class="fas fa-thumbs-up" ></i> <%= i.cant_likes %> </p>
+                                </a>
+                            </div>
+                        </div>
+                    <% end %>
+                </div> 
+            <% end %>
+        <% end %>
+    </div>
+</div>
+
+<%# /////////////////botones mas tweets y menos tweets//////////////////////// %>
+
+<div class="d-flex justify-content-around mb-4">
+    <form>
+        <input type="submit" name="mas_tweets" value="mas tweets" class="btn btn-info">
+    </form>
+    <form>
+        <input type="submit" name="menos_tweets" value="menos tweets" class="btn btn-info">
+    </form>
+</div>

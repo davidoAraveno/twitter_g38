@@ -26,15 +26,23 @@
   </head>
 
   <body>
-    <%= notice %>
 
-    <nav class="navbar">
+    <nav class="navbar mb-4">
+    <%# /////////////logo twiteer/////////// %>
       <div>
         <i class="fab fa-twitter fa-3x text-white"></i>
       </div>
+      <%# ///////////////////////////////////// %>
       <div>
-        <% if session[:user_id].present? %>
-          <%= link_to 'cerrar sesion', c_session_path, method: :delete, class:"link-nav" %>
+        <% if sesion %>
+          <div class="d-flex">
+          <%# //////////foto usuario navbar////////////////// %>
+            <div style="background-image: url(<%= current_user.photo %>);width: 50px; height: 50px; background-size: cover; background-position: center; border-radius: 25px">
+
+            </div>
+            <%# ////////////////////////////////////////////// %>
+            <%= link_to 'cerrar sesion', c_session_path, method: :delete, class:"link-nav" %>
+          </div>
         <% else %>
           <a href="<%= s_new_path %>" class="px-5 link-nav"> iniciar sesion </a>
           <a href="<%= n_user_path %>" class="link-nav"> registrarse </a>

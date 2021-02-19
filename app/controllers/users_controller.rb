@@ -11,13 +11,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.save
-      redirect_to i_user_path
+      redirect_to i_tweets_path
     else
-      redirect_to n_user_path
+      render :new
     end
-  end
-
-  def destroy
   end
 
   private
