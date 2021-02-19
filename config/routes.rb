@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # //////////modelo tweet///////////////////
   get 'i/tweets', to: 'tweets#index'
+  get 'tweets/:retweet', to: 'tweets#index', as: 'retweet'
   post 'c/tweets', to: 'tweets#create', as: 'ct'
 
   # ////////////modelo like//////////////////

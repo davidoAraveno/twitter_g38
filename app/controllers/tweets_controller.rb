@@ -1,9 +1,10 @@
 class TweetsController < ApplicationController
   def index
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-    end
     @tweet = Tweet.new
+    if params[:retweet].present?
+      @tweet.tweet_id = params[:retweet]
+    end
+
     @tweets = Tweet.all.reverse
 
 # ///////////////////paginacion tweets/////////////////////
@@ -27,7 +28,7 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to i_tweets_path
     else
-      redirect_to i_tweets_path, data: {confirm: 'no se publico el tweet debido a un error. Intentelo otra vez'}
+      redirect_to i_tweets_path
     end
   end
 
