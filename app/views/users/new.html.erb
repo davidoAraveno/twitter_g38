@@ -7,29 +7,29 @@
 </div>
 <div class="contenedor">
     <div>
-        <h3>Nuevo usuario</h3>
+        <h3 style="color: #3B3B3B">Nuevo usuario</h3>
     </div>
     <hr>
     
     <%= form_with(url: cu_path, model: @user, local: true) do |j| %>
         <div class="mb-3">
-            <%= j.label :nombre %>
+            <%= j.label :nombre, class:"texto-input" %>
             <%= j.text_field :name, class: 'form-control' %> 
         </div>
             <% if @user.errors[:name].any? %>
 		        <p> No puedes dejar el nombre vacio </p>
 	        <% end %>
         <div class="mb-3">
-            <%= j.label :email %>
+            <%= j.label :email, class:"texto-input" %>
             <%= j.email_field :email, class: 'form-control' %>
         </div>
             <% if @user.errors[:email].any? %>
 		        <p> Debes escribir un email valido </p>
 	        <% end %> 
         <div class="mb-3">
-            <%= j.label :contraseña %>
+            <%= j.label :contraseña, class:"texto-input" %>
             <%= j.text_field :password, type: "password", class: 'form-control' %>
-            <%= j.label "confirmar contraseña" %>
+            <%= j.label "confirmar contraseña", class:"texto-input" %>
             <%= j.text_field :password_confirmation, type: "password", class: 'form-control' %>
         </div>
             <% if @user.errors[:password].any? %>
@@ -39,12 +39,12 @@
 		        <p> Debes escribir nuevamente la contraseña para confirmarla </p>
 	        <% end %>
         <div class="mb-3">
-            <%= j.label :foto %>
+            <%= j.label :foto, class:"texto-input" %>
             <%= j.text_field :photo, class: 'form-control' %> 
         </div>
             <% if @user.errors[:photo].any? %>
 		        <p> Debes incluir una fotografia </p>
 	        <% end %>
-        <div><%= j.submit "entrar"%> </div>
+        <div><%= j.submit "entrar", class: "btn btn-info"%> </div>
     <% end %>
 </div>
