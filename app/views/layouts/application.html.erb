@@ -43,6 +43,7 @@
             <%= link_to 'cerrar sesion', c_session_path, method: :delete, class:"link-nav" %>
           </div>
         <% else %>
+          <a href="<%= i_tweets_path %>" class="px-1 link-nav"> ver como invitado </a>
           <a href="<%= s_new_path %>" class="px-5 link-nav"> iniciar sesion </a>
           <a href="<%= n_user_path %>" class="link-nav"> registrarse </a>
         <% end %>

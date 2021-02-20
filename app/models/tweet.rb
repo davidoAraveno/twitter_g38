@@ -3,9 +3,11 @@ class Tweet < ApplicationRecord
   has_many :likes
   belongs_to :tweet
 
-  validates :content, presence: true
 
   def cant_likes
     self.likes.size
   end
+
+
+
 end

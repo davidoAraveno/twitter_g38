@@ -1,5 +1,4 @@
 <%# ////////////////////////////FORMULARIO PARA PUBLICAR TWEET//////////////////////////// %>
-
 <% if session[:user_id] %>
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -53,6 +52,7 @@
                                 <%= f.submit 'twittear', style: 'border-radius: 50px;', class:"btn btn-info" %>
                             </div>
                         <% end %>
+                        
                     </div>
                 </div> 
         </div>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div>
-                            <p class="time-ago"> <%= time_ago_in_words(i.created_at) %> </p>
+                            <a href="<%= st_path(i.id) %>" class="time-ago"> <%= time_ago_in_words(i.created_at) %> </a>
                         </div>
                     </div>
                     <hr style="margin: 10px">
@@ -116,7 +116,7 @@
                             </div>
                             <div style="margin-left: 1rem;">
                                 <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
-                                    <p style="font-size: 1.3rem;" class="text-info"><i class="fas fa-thumbs-up" ></i> <%= i.cant_likes %> </p>
+                                    <p style="font-size: 1.3rem;" class="text-info"> <i class='fas fa-thumbs-up' ></i> <%= i.cant_likes %> </p>
                                 </a>
                             </div>
                         </div>
