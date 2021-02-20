@@ -19,8 +19,10 @@
                         <%= form_with(url: ct_path, model: @tweet, local:true) do |f| %>
                             <div class="text-center">
                                 <%= f.text_area :content, :size => "68x4", placeholder:"¿Que estas pensando #{current_user.name}?", style: "border: none;" %>
-                                <% f.number_field :retweets, value: 0 %>
+                                <%= f.number_field :retweets, value: 0, type: "hidden" %>
+                                <%= f.number_field :tweet_id, value: params[:retweet], type: "hidden" %>
                             </div>
+     <%# /////////////////RETWEET EN FORMULARIO EN CASO DE QUE EXISTA UN RETWEET////////////////////                        %>
                             <% if params[:retweet].present? %>
                                 <div>
                                     <div class="d-flex justify-content-between">
@@ -42,6 +44,7 @@
                                     </div>
                                 </div>
                             <% end %>
+    <%# //////////////////////////////////////////////////////////////////////////                         %>
                             <div class="d-flex justify-content-end">
                                 <%= f.submit 'twittear', style: 'border-radius: 50px;', class:"btn btn-info" %>
                             </div>
@@ -91,6 +94,29 @@
                             </div>
                         </div>
                     <% end %>
+    <%# ////////////////////////////RETWEET EN EL TWEET/////////////////////////////////////////////                 %>
+                    <% if i.tweet_id != nil %>
+                        <div class="col-md-12 mb-3 pt-2 container-fluid" style="background: #D5D5D5; border-radius: 15px; border: 2px solid #B3B3B3">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <div style="background-image:url(<%= i.tweet.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+
+                                    </div>
+                                    <div style="margin-left: 2rem">
+                                        <h4><%= i.tweet.user.name.capitalize %> </h4>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p> <%= time_ago_in_words(i.tweet.created_at) %> </p>
+                                </div>
+                            </div>
+                            <hr style="margin: 10px">
+                            <div class="text-center">
+                                <p> <%= i.tweet.content.capitalize %> </p>
+                            </div>
+                        </div>
+                    <% end%>
+    <%# ////////////////////////////////////////////////////////////////////////////////////////                 %>
                 </div> 
             <% end %>
         <% end %>
