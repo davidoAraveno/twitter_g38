@@ -7,19 +7,6 @@ class TweetsController < ApplicationController
 
     @tweets = Tweet.all.reverse
 
-# ///////////////////paginacion tweets/////////////////////
-    @count = 0
-    @inicio = 0
-    @fin = 5
-    if params[:mas_tweets]
-      @inicio += 5
-      @fin += 10
-    elsif params[:menos_tweets]
-      @inicio -= 5
-      @fin -= 5
-      redirect_to i_tweets_path
-    end
-
   end
 
   def show
