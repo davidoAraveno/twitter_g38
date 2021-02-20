@@ -116,7 +116,11 @@
                             </div>
                             <div style="margin-left: 1rem;">
                                 <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
-                                    <p style="font-size: 1.3rem;" class="text-info"> <i class='fas fa-thumbs-up' ></i> <%= i.cant_likes %> </p>
+                                    <% if i.likes.find_by(user_id: session[:user_id], tweet_id: i.id) %>
+                                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-heart" style="color: #CC3366"></i> <%= i.cant_likes %> </p>
+                                    <% else %>
+                                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-thumbs-up"></i> <%= i.cant_likes %> </p>
+                                    <% end %>
                                 </a>
                             </div>
                         </div>
