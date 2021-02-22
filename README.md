@@ -1,38 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
 
+No hay usuarios ni tweets creados por lo que debes crear tu cuenta y hacer tweets, likes y retweets para probar la pagina
 
-
-Hola. Simplemente hize todo lo que pude.
-La implementacion de la paginacion no me resulto y subir a heroku tampoco.
-Lo seguire intentando durante el fin de semana pero dejo para evaluar esta version porque estoy contra el tiempo y con mucho sueño!
-
-
-
-
-
-
-
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Envio denuevo la prueba ya que la que envie anteriormente, tenia funcionando toda la logica y la estructura pero yo no sabia que al subir a github, no se guardaban los registros por lo que al revisar esa pagina, lanzaria error al entrar a las secciones donde van imagenes.
+Muchas gracias por la comprension

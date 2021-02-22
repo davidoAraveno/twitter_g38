@@ -43,7 +43,7 @@
             <%= j.text_field :photo, class: 'form-control' %> 
         </div>
             <% if @user.errors[:photo].any? %>
-		        <p> Debes incluir una fotografia </p>
+		        <p> Debes ingresar la URL de la imagen </p>
 	        <% end %>
         <div><%= j.submit "entrar", class: "btn btn-info"%> </div>
     <% end %>

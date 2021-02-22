@@ -7,13 +7,4 @@
         <% end %>
     </div>
 
-    <script>
-        fotos = document.getElementsByClassName("fotos");
-        count = 0
-        setInterval(function(){
-            fotos[count].style.backgroundImage = `${fotos[Math.floor(Math.random() * 5)].style.backgroundImage}`;
-            count++
-        }, 1000);
-    </script>
-
 </header>

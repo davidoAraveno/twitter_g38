@@ -62,70 +62,74 @@
 
 <%# /////////////////////// TWEET PUBLICADOS /////////////////////////////////////// %>
 
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <% @tweets.each do |i| %>
-                <div class="col-md-7 mb-3 pt-2" style="background: #D5D5D5; border-radius: 15px">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                            <div style="background-image:url(<%= i.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+<% if @tweets.size == 0 %>
+    <h4 class="text-center" style="color: #3B3B3B"> No hay tweets publicados </h4>
+<% else %>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <% @tweets.each do |i| %>
+                    <div class="col-md-7 mb-3 pt-2" style="background: #D5D5D5; border-radius: 15px">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <div style="background-image:url(<%= i.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
 
-                            </div>
-                            <div style="margin-left: 2rem" class="title">
-                                <h4><%= i.user.name.capitalize %> </h4>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="<%= st_path(i.id) %>" class="time-ago"> <%= time_ago_in_words(i.created_at) %> </a>
-                        </div>
-                    </div>
-                    <hr style="margin: 10px">
-                    <div style="border-radius: 5px; padding-left:1rem;">
-                        <p class="content"> <%= i.content.capitalize %> </p>
-                    </div>
-    <%# ////////////////////////////RETWEET EN EL TWEET/////////////////////////////////////////////                 %>
-                    <% if i.tweet_id != nil %>
-                        <div class="col-md-12 mb-3 pt-2 container-fluid" style="border-radius: 15px; border: 2px solid #B3B3B3">
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <div style="background-image:url(<%= i.tweet.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
-
-                                    </div>
-                                    <div style="margin-left: 2rem" class="title">
-                                        <h5>Retweet a:<%= i.tweet.user.name.capitalize %> </h5>
-                                    </div>
                                 </div>
-                                <div>
-                                    <p class="time-ago"> <%= time_ago_in_words(i.tweet.created_at) %> </p>
+                                <div style="margin-left: 2rem" class="title">
+                                    <h4><%= i.user.name.capitalize %> </h4>
                                 </div>
                             </div>
-                            <hr style="margin: 10px 0; background: #B3B3B3; padding: 0.5px 0">
                             <div>
-                                <p class="content"> <%= i.tweet.content.capitalize %> </p>
+                                <a href="<%= st_path(i.id) %>" class="time-ago"> <%= time_ago_in_words(i.created_at) %> </a>
                             </div>
                         </div>
-                    <% end%>
-    <%# ////////////////////////////////////////////////////////////////////////////////////////                 %>
-                    <% if session[:user_id] %>
-                        <div class="d-flex">
-                            <div style="border-radius: 15px; padding: 0;">
-                                <a href="<%= retweet_path(i.id) %>">
-                                    <p style="font-size: 1.6rem;" class="text-info"><i class="fas fa-retweet"></i></p>
-                                </a>
-                            </div>
-                            <div style="margin-left: 1rem;">
-                                <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
-                                    <% if i.likes.find_by(user_id: session[:user_id], tweet_id: i.id) %>
-                                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-heart" style="color: #CC3366"></i> <%= i.cant_likes %> </p>
-                                    <% else %>
-                                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-thumbs-up"></i> <%= i.cant_likes %> </p>
-                                    <% end %>
-                                </a>
-                            </div>
+                        <hr style="margin: 10px">
+                        <div style="border-radius: 5px; padding-left:1rem;">
+                            <p class="content"> <%= i.content.capitalize %> </p>
                         </div>
-                    <% end %>
-                </div> 
-        <% end %>
+        <%# ////////////////////////////RETWEET EN EL TWEET/////////////////////////////////////////////                 %>
+                        <% if i.tweet_id != nil %>
+                            <div class="col-md-12 mb-3 pt-2 container-fluid" style="border-radius: 15px; border: 2px solid #B3B3B3">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <div style="background-image:url(<%= i.tweet.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+
+                                        </div>
+                                        <div style="margin-left: 2rem" class="title">
+                                            <h5>Retweet a:<%= i.tweet.user.name.capitalize %> </h5>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="time-ago"> <%= time_ago_in_words(i.tweet.created_at) %> </p>
+                                    </div>
+                                </div>
+                                <hr style="margin: 10px 0; background: #B3B3B3; padding: 0.5px 0">
+                                <div>
+                                    <p class="content"> <%= i.tweet.content.capitalize %> </p>
+                                </div>
+                            </div>
+                        <% end%>
+        <%# ////////////////////////////////////////////////////////////////////////////////////////                 %>
+                        <% if session[:user_id] %>
+                            <div class="d-flex">
+                                <div style="border-radius: 15px; padding: 0;">
+                                    <a href="<%= retweet_path(i.id) %>">
+                                        <p style="font-size: 1.6rem;" class="text-info"><i class="fas fa-retweet"></i></p>
+                                    </a>
+                                </div>
+                                <div style="margin-left: 1rem;">
+                                    <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
+                                        <% if i.likes.find_by(user_id: session[:user_id], tweet_id: i.id) %>
+                                            <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-heart" style="color: #CC3366"></i> <%= i.cant_likes %> </p>
+                                        <% else %>
+                                            <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-thumbs-up"></i> <%= i.cant_likes %> </p>
+                                        <% end %>
+                                    </a>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div> 
+            <% end %>
+        </div>
     </div>
-</div>
+<% end %>
 
