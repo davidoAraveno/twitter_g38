@@ -6,3 +6,5 @@ No hay usuarios ni tweets creados por lo que debes crear tu cuenta y hacer tweet
 
 Envio denuevo la prueba ya que la que envie anteriormente, tenia funcionando toda la logica y la estructura pero yo no sabia que al subir a github, no se guardaban los registros por lo que al revisar esa pagina, lanzaria error al entrar a las secciones donde van imagenes.
 Muchas gracias por la comprension
+
+PD: Recuerda ejecutar db:seed antes de probar la pagina para que se carguen las imagenes de la pagina que deje en el seed!
